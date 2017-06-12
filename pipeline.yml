@@ -7,7 +7,7 @@ jobs:
   - get: resource-tutorial
   - put: hello-world-docker-image
     params:
-      build: resource-tutorial/35_push_docker_image/docker
+      build: docker
 
 resources:
 - name: resource-tutorial
