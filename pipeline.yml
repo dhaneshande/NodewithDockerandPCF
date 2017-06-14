@@ -5,9 +5,10 @@ jobs:
   serial: true
   plan:
   - get: resource-tutorial
+    trigger: true
   - put: hello-world-docker-image
     params:
-      build: docker
+      build: resource-tutorial/docker
 
 resources:
 - name: resource-tutorial
@@ -16,11 +17,9 @@ resources:
     uri: https://github.com/dhaneshande/NodewithDockerandPCF.git
 
 - name: hello-world-docker-image
-  type: cf
+  type: docker-image
   source:
-    api: {{cf-api}}
-    username: {{cf-username}}
-    password: {{cf-password}}
-    organization: {{cf-organization}}
-    space: {{cf-space}}
-    skip_cert_check: true
+    email: {{docker-hub-email}}
+    username: {{docker-hub-username}}
+    password: {{docker-hub-password}}
+    repository: {{docker-hub-image-hello-world}}
